@@ -27,7 +27,7 @@ class Timer extends Component {
 
     setDefaultTime() {
         this.setState({
-            time: this.timedefaultTime
+            time: this.times.defaultTime
         })
     }
 
@@ -38,6 +38,8 @@ class Timer extends Component {
                 message: 'WORKING!'
             }
         })
+
+        this.setTime(this.times.defaultTime);
     }
 
     setTimeForShortBreak = () => {
@@ -47,6 +49,8 @@ class Timer extends Component {
                 message: 'Taking a Short Break!'
             }
         })
+
+        this.setTime(this.times.shortBreak);
     }
 
     setTimeForLongBreak = () => {
@@ -56,6 +60,61 @@ class Timer extends Component {
                 message: 'Takin a Long Break!'
             }
         })
+
+        this.setTime(this.times.longBreak);
+    }
+
+    setTime = (newTime) => {
+        this.restartInterval();
+        this.setState({
+            time: newTime,
+        })
+    }
+
+    restartInterval = () => {
+        clearInterval(this.interval);
+
+        this.interval = setInterval(this.countDown, 1000);
+    }
+
+    countDown = () => {
+        if(this.state.time  === 0){
+            this.setState({
+                alert: {
+                    type: 'Beep',
+                    message: 'Beep Madafaka do u hear me',
+                }
+            })
+        } else {
+            this.setState({
+                time: this.state.time -1,
+            })
+        }
+    }
+
+    displayTimer(seconds) {
+        var min = Math.floor(seconds / 60);
+        var sec = (seconds - (min * 60));
+
+        console.log(seconds);
+
+        if(min < 10){
+            if(sec < 10){
+                return "0" + min + ":0" + sec;
+            }
+
+            else{
+                return "0" + min + ":" + sec;
+            } 
+        }
+
+        if(sec < 10){
+            return min + ":0" + sec;
+        }
+
+        else{
+            return min + ":" + sec;
+        }
     }
 
     render() {
@@ -69,11 +128,11 @@ class Timer extends Component {
                     {message}
                 </div>
 
-                <div className = "imer">
-                    Mostrar timepo en minutos
+                <div className = "timer">
+                    {this.displayTimer(time)}
                 </div>
 
-                <dvi classNAme = "types">
+                <div className = "types">
                 <button
                     className = "start"
                     onClick = {this.setTimeForWork}>
@@ -94,7 +153,7 @@ class Timer extends Component {
                         
                        Long Break
                     </button>
-                </dvi>
+                </div>
 
             </div>
         )
