@@ -1,0 +1,16 @@
+.Animation {
+    background-color: rgb(49, 162, 77);
+}
+
+.Animation .transition {
+    transition: all 3s ease 0s;
+    color: white;
+    padding-bottom: 10px;
+    transform: rotate(0deg);
+}
+
+.Animation .transition.show {
+    padding-bottom: 80px;
+    padding-top: 80px;
+    transform: scale(3, 1);
+}
