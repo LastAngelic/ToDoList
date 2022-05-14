@@ -1,0 +1,7 @@
+.numbers{
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid rgb(226, 63, 63);
+    width: 120px;
+}

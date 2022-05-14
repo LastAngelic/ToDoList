@@ -7,14 +7,15 @@ import Content from '../shared/layout/Content';
 // import Timer from './Pomodoro/Timer';
 // import Crypto from './Crypto';
 // import ChartHome from './Chart/ChartHome';
-import Animation from './Animating/Animation';
+//import Animation from './Animating/Animation';
+import Numbers from './PureComponent/Number';
 
 function App() {
   return (
     <div className="App">
-      <Header title="Header" url="https://www.youtube.com/watch?v=dQw4w9WgXcQ" />
+      <Header title="Number" url="https://www.youtube.com/watch?v=dQw4w9WgXcQ" />
       <Content>
-        <Animation />
+        <Numbers />
       </Content>
       <Footer />
     </div>
