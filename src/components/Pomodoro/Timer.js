@@ -1,9 +1,13 @@
-import Recat, {Component} from 'react';
+import React, {Component} from 'react';
+import ReactDOM from "react-dom";
+import Countdown from "react-countdown-now";
 import './Timer.css';
 
+let paused;
+
 class Timer extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             alert: {
@@ -11,7 +15,9 @@ class Timer extends Component {
                 message: '',
             },
 
-            time: 0
+            time: 0,
+
+            isToggleOn: true
         };
 
         this.times = {
@@ -19,6 +25,8 @@ class Timer extends Component {
             shortBreak: 300,
             longBreak: 900,
         }
+
+        this.handleClick = this.handleClick.bind(this);
     }
 
     componentDidMount() {
@@ -74,8 +82,10 @@ class Timer extends Component {
     restartInterval = () => {
         clearInterval(this.interval);
 
-        this.interval = setInterval(this.countDown, 1000);
+        if(!paused) {paused = setInterval(this.countDown, 1000);}
+
     }
+    
 
     countDown = () => {
         if(this.state.time  === 0){
@@ -117,6 +127,35 @@ class Timer extends Component {
         }
     }
 
+    handleClick() {
+        this.setState(prevState => ({
+          isToggleOn: !prevState.isToggleOn
+        }));
+
+        if(!paused) {paused = setInterval(this.countDown, 1000);}
+      }
+
+    stopTimer = (newTime) => {
+        window.location.reload(false);
+    }
+
+    handlePauseClick = () => {
+        this.countdownApi && this.countdownApi.pause();
+    };
+
+    // handleUpdate = () => {
+    //     this.forceUpdate();
+    // };
+
+    handlePause = () => {
+
+          clearInterval(paused);
+
+          paused = null;
+
+          this.handleClick();
+    };
+
     render() {
 
         const {alert: {message, type}, time} = this.state;
@@ -155,10 +194,22 @@ class Timer extends Component {
                     </button>
                 </div>
 
+                <div>
+                    <button onClick={this.handlePause}>
+                        {this.state.isToggleOn ? <i class="fa-solid fa-pause"></i> : <i class="fa-solid fa-play"></i> }
+                    </button>
+
+                    <button 
+                    className = "Stop"
+                    class="fa-solid fa-stop"
+                    onClick = {this.stopTimer}
+                    />
+                </div>
+
             </div>
         )
     }
+    
 }
-
 
 export default Timer;
