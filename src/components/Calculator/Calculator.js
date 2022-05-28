@@ -42,10 +42,10 @@ class Calculator extends Component {
                 />
                 
                 <select name="selector" value={this.state.selector} onChange={this.handleOnChange}>
-                    <option value="addition">+</option>
-                    <option value="substraction">-</option>
-                    <option value="multiplication">x</option>
-                    <option value="division">/</option>
+                    <option value="add">+</option>
+                    <option value="sub">-</option>
+                    <option value="mult">x</option>
+                    <option value="div">/</option>
                 </select>
 
                 <input
@@ -65,17 +65,17 @@ class Calculator extends Component {
 
 function calculateResult(number1, number2, selector) {
     switch (selector) {
-        case "addition":
+        case "add":
             return number1 + number2;
             
-        case "substraction":
+        case "sub":
             return number1 - number2;
             
-        case "multiplication":
+        case "mult":
             return number1 * number2;
             
 
-            case "division":
+            case "div":
         return (number1 / number2).toFixed(2);
          
     
