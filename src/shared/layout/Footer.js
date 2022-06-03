@@ -7,7 +7,8 @@ const Footer= () => {
 
     return (
         <footer style={root}>
-            &copy; Web2 {new Date().getFullYear()}
+            &copy; Uniat inicio mi arco de villano
+            {/* &copy; Angel Peña {new Date().getFullYear()} */}
         </footer>
     );
 
