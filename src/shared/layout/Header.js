@@ -4,7 +4,7 @@ import logo from '../images/logo.svg';
 
 const Header = (props) => {
 
-    const {title, url} = props;
+    const {url} = props;
  
     return (
         <header className="App-header">
