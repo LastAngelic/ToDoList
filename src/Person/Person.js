@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Person.css';
 import Popup from 'react-popup';
+//import Popup from 'reactjs-popup';
 import './Popup.css';
 
 class Person extends Component {
@@ -40,15 +41,24 @@ class Person extends Component {
             }
         })
 
+        // const overlayStyle = { background: 'rgba(0,0,0,1)' };
+
+        // const PopupExample = () => (
+        //     <Popup trigger={<button> Trigger</button>} position="right center" 
+        //     style={overlayStyle}>
+        //       <div>Popup content here !!</div>
+        //     </Popup>
+        //   );
+
         if (Name.trim() && LastName.trim()) {
 
             Popup.create({
                 title: 'Personal Information',
                 content: (
                     <div>
-                        <p><strong>Name:</strong>{Name} {LastName}</p>
-                        <p><strong>Email:</strong>{Email}</p>
-                        {Phone && <p><strong>Phone:</strong>{Phone}</p>}
+                        <p><strong>Name:</strong> {Name} {LastName}</p>
+                        <p><strong>Email:</strong> {Email}</p>
+                        {Phone && <p><strong>Phone:</strong> {Phone}</p>}
                     </div>
                 ),
                 buttons: {
